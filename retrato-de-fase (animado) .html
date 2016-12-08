@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords" content="css, html5, css framework"/>
+        <meta name="description" content="CSS Framework for Dummies"/>
+        <script type="text/javascript" src="http://lvspais.herokuapp.com/static/numeric-1.2.6.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="http://lvspais.herokuapp.com/static/flotr2.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="http://coffeescript.org/v1/browser-compiler/coffee-script.js" charset="utf-8"></script>
+        <!--<script type="text/javascript" src="http://lvspais.herokuapp.com/static/coffee-script.js" charset="utf-8"></script>-->
+
+        <link rel="stylesheet" href="http://yegor256.github.io/tacit/tacit.min.css"/>
+
+        <style>
+#container{
+    height:25em;
+    width:35em;
+}
+
+#play{
+    visibility: hidden;
+}
+
+input{
+    display: inline-block;
+}
+        </style>
+
+        <title>Dinâmica não-linear e caos</title>
+    </head>
+
+    <body>
+        <section>
+            <header>
+                <nav>
+                    <ul>
+                        <h1>Dinâmica não-linear e caos </h1>
+                    </ul>
+                </nav>
+            </header>
+
+            <article>
+
+                <!--<body>-->
+                <main>
+                <h4> Site criado para projeto da disciplina dinâmica não-linear e caos da Universidade Federal do ABC (UFABC), lecionada pelo Prof. Dr. Rafael Vilela</h4>
+                <h3>Retrato de fase animado</h3>
+
+                <H6> TUTORIAL: x = x[0]; y = x[1]; sin(x) = Math.sin(x[0]); cos(x) = Math.cos(x[0]); Multiplicação = *; Divisão = /; potencias = Math.pow(base, expoente)</H6>	
+                dx/dt: <input class='teste' type='text' name='teste' id='dx' value='x[1]'>
+                dy/dt: <input class='teste' type='text' name='teste' id='dy' value='-9.8*Math.cos(x[0])'>
+                <H6> Intervalo de plotagem (ex: -15..15, plota um intervalo de 1 em 1. Pode escolher posições, ex: 1, 3, 5)</H6>
+                delta x: <input class='teste' type='text' name='teste' id='deltaX' value='-15..15'> 
+                delta y: <input class='teste' type='text' name='teste' id='deltaY' value='-15..15'>
+                <br>
+				Velocidade de execução: <input class='teste' type='number' pattern="[0-9]+" name='teste' id='tempo' value='100'>
+
+                <button type="submit" id="fase">Run</button>	
+                <button type="submit" id="play">Pause</button>
+
+                <div id="container"></div>
+                </main>
+
+                <script type="text/coffeescript" charset="utf-8">
+
+window.container = document.getElementById("container")
+button = document.getElementById("fase")
+window.btn_play = document.getElementById("play")
+
+window.indice=0
+window.interval=undefined
+window.res=[]
+
+window.fase = -> 
+    window.t = parseInt(document.getElementById("tempo").value)
+    dx = document.getElementById("dx")
+    dy = document.getElementById("dy")
+    deltaX = document.getElementById("deltaX")
+    deltaY = document.getElementById("deltaY")
+    CoffeeScript.run("window.f = (t,x) -> ["+dx.value+","+dy.value+"]")
+    CoffeeScript.run("window.a = ["+deltaX.value+"]")	
+    CoffeeScript.run("window.b = ["+deltaY.value+"]")
+    for j in b
+        do (j)->
+            for i in a
+                do (i)->
+                    sol = numeric.dopri(0,10,[i,j],f,1e-5,500)
+                    window.res.push(sol.y)
+    window.interval = setInterval(window.animate,window.t)
+
+window.animate = ->
+    Flotr.draw(window.container, [window.res[window.indice]],{ yaxis:{max:15,min:-15}, xaxis:{max:15,min:-15}, HtmlText:false, mouse:{track:true}, title:"Retrato de fase animado" })
+    if window.indice < res.length
+        window.indice = window.indice+1 
+    else
+        clearInterval(window.interval)
+    
+
+button.onclick = ->
+    window.indice = 0
+    window.res=[]
+    clearInterval(window.interval)
+    window.fase()
+    window.parado = false
+    window.btn_play.style.visibility = "visible"
+    window.parado = false
+    btn_play.innerHTML = "Pause"
+
+
+window.parado = false
+
+window.btn_play.onclick = ->
+    if window.parado is true
+        window.parado = false
+        btn_play.innerHTML = "Pause"
+        window.interval = setInterval(window.animate,window.t)
+    else
+        window.parado = true
+        btn_play.innerHTML = "Play"
+        clearInterval(window.interval)
+
+
+</script>
+
+            </article>
+
+            <footer>
+                <nav>
+                    <ul>
+                        <li>
+                            <small><li>By Beatriz Larocca & </li><a href="http://lvspais.herokuapp.com/">Lucas Severo</a> <li>, 2016</li></small>
+                        </li>
+                    </ul>
+                </nav>
+            </footer>
+
+        </section>
+
+                </body>
+</html>
