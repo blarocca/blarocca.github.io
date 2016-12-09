@@ -88,7 +88,7 @@ window.fase = ->
         do (j)->
             for i in a
                 do (i)->
-                    sol = numeric.dopri(0,10,[i,j],f,1e-5,500)
+                    sol = numeric.dopri(0,10,[i,j],f,1e-6,500)
                     window.res.push(sol.y)
     window.interval = setInterval(window.animate,window.t)
 
