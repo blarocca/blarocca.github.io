@@ -105,11 +105,11 @@ window.fase = ->
 					res.push(sol.y)
 	Flotr.draw(container, res, 
 		{ 
-			mouse:{track:true},
 			yaxis:{min: ymin, max: ymax},
 			xaxis:{min: xmin, max: xmax},
 			HtmlText:false,
-			title:"Retrato de fase" 
+			title:"Retrato de fase",
+			mouse:{track:true}
 		})
 
 button.onclick = window.fase
