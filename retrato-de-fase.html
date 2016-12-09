@@ -105,8 +105,8 @@ window.fase = ->
 					res.push(sol.y)
 	Flotr.draw(container, res, 
 		{ 
-			yaxis:{min: -10, max: 10},
-			xaxis:{min: -10, max: 10},
+			yaxis:{min: ymin, max: ymax},
+			xaxis:{min: xmin, max: xmax},
 			HtmlText:false,
 			mouse:{track:true},
 			title:"Retrato de fase" 
