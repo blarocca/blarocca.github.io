@@ -52,8 +52,8 @@ input{
 		
 
 		<H6> Intervalo de plotagem (ex: -15..15, plota um intervalo de 1 em 1. Pode escolher posições, ex: 1, 3, 5)</H6>
-		delta x: <input class='teste' type='text' name='teste' id='deltaX' value='-15..15'> 
-		delta y: <input class='teste' type='text' name='teste' id='deltaY' value='-15..15'>
+		delta x: <input class='teste' type='text' name='teste' id='deltaX' value='[-15..15]'> 
+		delta y: <input class='teste' type='text' name='teste' id='deltaY' value='[-15..15]'>
 
 		<H6> Min e max do eixo X </H6>
 		Eixo x min: <input class='teste' type='text' name='teste' id='delXmin' value='-10'> 
@@ -87,8 +87,8 @@ window.fase = ->
 	delYmax = document.getElementById("delYmax")
 
 	CoffeeScript.run("window.f = (t,x) -> ["+dx.value+","+dy.value+"]")
-	CoffeeScript.run("window.a = ["+deltaX.value+"]")	
-	CoffeeScript.run("window.b = ["+deltaY.value+"]")
+	CoffeeScript.run("window.a = "+deltaX.value+"")	
+	CoffeeScript.run("window.b = "+deltaY.value+"")
 	CoffeeScript.run("window.xmin = ["+delXmin.value+"]")	
 	CoffeeScript.run("window.xmax = ["+delXmax.value+"]")
 	CoffeeScript.run("window.ymin = ["+delYmin.value+"]")	
