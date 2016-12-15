@@ -89,10 +89,10 @@ window.fase = ->
 	CoffeeScript.run("window.f = (t,x) -> ["+dx.value+","+dy.value+"]")
 	CoffeeScript.run("window.a = "+deltaX.value+"")	
 	CoffeeScript.run("window.b = "+deltaY.value+"")
-	CoffeeScript.run("window.xmin = ["+delXmin.value+"]")	
-	CoffeeScript.run("window.xmax = ["+delXmax.value+"]")
-	CoffeeScript.run("window.ymin = ["+delYmin.value+"]")	
-	CoffeeScript.run("window.ymax = ["+delYmax.value+"]")
+	CoffeeScript.run("window.xmin = "+delXmin.value+"")	
+	CoffeeScript.run("window.xmax = "+delXmax.value+"")
+	CoffeeScript.run("window.ymin = "+delYmin.value+"")	
+	CoffeeScript.run("window.ymax = "+delYmax.value+"")
 
 
 	res=[]
